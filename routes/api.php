@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/ejemplo-julian', 'ApiController@getActors');
 Route::get('/get-category', 'ApiController@getCategory');
+Route::get('/get-country','CategoryController@getCountry');
