@@ -12,4 +12,8 @@ class Language extends Model
     protected $fillable =[
         'language_id','name'
     ];
+
+    public function film(){
+        return $this->hasMany(Film::class);
+    }
 }
