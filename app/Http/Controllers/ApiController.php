@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Actor;
-use App\Models\Category;
+use App\Models\Film;
+use App\Models\Language;
 
 class ApiController extends Controller
 {
-    public function getActors(request $request){
-        return Actor::paginate(6);
+
+    public function getLanguage(request $request){
+        return Language::pluck('name');
     }
 
-    public function getCategory(request $request){
-        $julian = Category::get();
-        return $julian;
+    public function getFilm(request $request){
+        return Film::paginate(6);
     }
+
+    
 }
