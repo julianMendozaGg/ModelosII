@@ -20,5 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/get-films','ApiController@getFilm');
 Route::get('/get-language','ApiController@getLanguage');
-
-Route::resource('/film', 'FilmController');
+//Route::get('/film/{searchBy}', 'FilmController@show')->name('film.show');
+Route::resource('/film','ActorController');
+Route::get('/film/{nombre}','ActorController@show')->name('film');
+Route::resource('/actor','ActorController');

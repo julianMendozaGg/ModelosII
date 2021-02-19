@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Film;
-use Illuminate\Http\Request;
 
-class FilmController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Actor;
+
+class ActorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,7 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $film=Film::orderby('title','DESC')->paginate();
-        return view ('film',compact('film'));
+        //
     }
 
     /**
@@ -35,7 +35,7 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        return Film::create($request->all());
+        //
     }
 
     /**
@@ -44,10 +44,16 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        return Film::orderby('title',$id)->paginate();
-        
+        $nombreComp= explode(" ",$name);
+        return Actor:: whereIn('first_name',$nombreComp)
+            ->orWhereIn('last_name',$nombreComp)
+            ->orWhere(function($query) use ($nombreComp){
+                for ($i = 0; $i < count($nombreComp); $i++){
+                    $query->where('first_name','like','%'.$nombreComp[$i].'%');
+                }
+            })->paginate(8);
     }
 
     /**
@@ -83,6 +89,4 @@ class FilmController extends Controller
     {
         //
     }
-
-    
 }
