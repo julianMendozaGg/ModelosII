@@ -58,7 +58,7 @@ class FilmController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Film ::update($request->all());
     }
 
     /**
