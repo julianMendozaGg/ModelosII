@@ -12,12 +12,20 @@ class FilmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($title)
+    public function index()
     {
-        return Film::where('title','like','%'.$title.'%');
+        // return Film::where('title','like','%'.$title.'%');
 
-        /*$film=Film::orderby('title','DESC')->paginate();
-        return view ('film',compact('film'));*/
+        // /*$film=Film::orderby('title','DESC')->paginate();
+        // return view ('film',compact('film'));*/
+    }
+
+    public function getFilmTitle(request $request, $title){
+        $film = [
+            'filmsList' => Film::where('title', 'like', '%'.$title.'%')->pluck('title'),
+            'filmPaginate' => Film::where('title', 'like', '%'.$title.'%')->get()
+        ];
+        return $film;
     }
 
     /**
