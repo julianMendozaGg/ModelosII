@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Film;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class FilmController extends Controller
@@ -11,10 +12,12 @@ class FilmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($title)
     {
-        $film=Film::orderby('title','DESC')->paginate();
-        return view ('film',compact('film'));
+        return Film::where('title','like','%'.$title.'%');
+
+        /*$film=Film::orderby('title','DESC')->paginate();
+        return view ('film',compact('film'));*/
     }
 
     /**
@@ -46,9 +49,16 @@ class FilmController extends Controller
      */
     public function show($id)
     {
-        return Film::orderby('title',$id)->paginate();
+        if ($id<>'ASC' AND $id<>'DESC'){
+            return Film::where('title','like','%'.$id.'%')->get();
+        }
+        else{
+            return Film::orderby('title',$id)->paginate();
+        }
+        
         
     }
+    
 
     /**
      * Show the form for editing the specified resource.
