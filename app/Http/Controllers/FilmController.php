@@ -55,16 +55,9 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($order)
     {
-        if ($id<>'ASC' AND $id<>'DESC'){
-            return Film::where('title','like','%'.$id.'%')->get();
-        }
-        else{
-            return Film::orderby('title',$id)->paginate();
-        }
-        
-        
+        return Film::orderby('title',$order)->paginate();        
     }
     
 
