@@ -14,18 +14,11 @@ class FilmController extends Controller
      */
     public function index()
     {
-        // return Film::where('title','like','%'.$title.'%');
-
-        // /*$film=Film::orderby('title','DESC')->paginate();
-        // return view ('film',compact('film'));*/
+        return Film::paginate(6);
     }
 
     public function getFilmTitle(request $request, $title){
-        $film = [
-            'filmsList' => Film::where('title', 'like', '%'.$title.'%')->pluck('title'),
-            'filmPaginate' => Film::where('title', 'like', '%'.$title.'%')->get()
-        ];
-        return $film;
+        return Film::where('title', 'like', '%'.$title.'%')->pluck('title');
     }
 
     /**
@@ -69,7 +62,7 @@ class FilmController extends Controller
      */
     public function edit($id)
     {
-        return Film ::update($request->all());
+        return Film::update($request->all());
     }
 
     /**
@@ -90,9 +83,9 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($title)
     {
-        //
+        return Film::where('title', $title)->delete();
     }
 
     

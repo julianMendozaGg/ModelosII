@@ -13,9 +13,6 @@ class ApiController extends Controller
         return Language::pluck('name');
     }
 
-    public function getFilm(request $request){
-        return Film::paginate(6);
-    }
 
     
 }

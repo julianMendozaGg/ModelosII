@@ -11,12 +11,12 @@ class Film extends Model
 
     protected $table = ('film');
     protected $fillable = [
-        'film_id', 'title', 'description', 'release_year', 'language_id', 'rental_duration', 'rental_rate', 'length', 'replacement_cost',
+        'id', 'title', 'description', 'release_year', 'language_id', 'rental_duration', 'rental_rate', 'length', 'replacement_cost',
         'rating', 'special_features'
     ];
 
     public function language(){
-        return $this->belongsTo(Language::class);
+        return $this->belongsTo(Language::class, 'language_id', 'language_id');
     }
 
     public function category(){
