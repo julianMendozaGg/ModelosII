@@ -4,14 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Actor;
+use App\Traits\ActorTrait;
 
 class ActorController extends Controller
 {
+    //use ActorTrait;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Uso de trait en revisión
+    public function getActorIdByName($actorFullName){
+        //$this->getActorIdByName($actorFullName);
+        $actorName= explode(" ",$actorFullName);
+        return Actor::where('first_name','like','%'.$actorName[0].'%')
+            ->where('last_name','like','%'.$actorName[1].'%')->pluck('actor_id');
+    
+    }
+
     public function index()
     {
         //

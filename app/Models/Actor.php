@@ -9,7 +9,8 @@ class Actor extends Model
 {
     use HasFactory;
 
-    protected $table = ('actor');
+    protected $table = 'actor';
+    protected $primaryKey = 'actor_id';
 
     protected $fillable = [
         'actor_id', 'first_name', 'last_name'
