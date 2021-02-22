@@ -21,6 +21,10 @@ class FilmController extends Controller
         return Film::where('title', 'like', '%'.$title.'%')->pluck('title');
     }
 
+    public function getOneFilm(request $request, $title){
+        return Film::where('title', $title)->first();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -62,7 +66,6 @@ class FilmController extends Controller
      */
     public function edit($id)
     {
-        return Film::update($request->all());
     }
 
     /**
@@ -74,7 +77,7 @@ class FilmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Film::where('film_id',$id)->update($request->all());
     }
 
     /**
