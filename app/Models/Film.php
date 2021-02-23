@@ -10,9 +10,10 @@ class Film extends Model
     use HasFactory;
 
     protected $table = 'film';
+    protected $primaryKey = 'film_id';
     protected $fillable = [
         'film_id', 'title', 'description', 'release_year', 'language_id', 'rental_duration', 'rental_rate', 'length', 'replacement_cost',
-        'rating', 'special_features'
+        'rating', 'special_features','image'
     ];
 
     public function language(){

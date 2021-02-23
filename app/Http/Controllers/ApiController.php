@@ -32,13 +32,14 @@ class ApiController extends Controller
         return $film;
     }
 
-    //Peliculas por nombre de "actor", IMPORTANTE: Aún falta arreglarle algo a este método preguntar Julian Xd
-    public function getFilmByActor(){
-        //app(ActorController::class)->getActorIdByName($actorName);
-        $actor = Actor::find(1);
-        return $actor->film;
+    public function updateImage(){
+        $image= "https://institutolap.com/sites/ilap-internacional/files/636055955513037869162211565_movie.jpg";
+        return Film::whereNull('image')->update(array('image' => $image));
         
     }
+
+    
+
 
     
     
