@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/get-actor-by-id/{actorName}','ActorController@getActorIdByName');
+// Route::get('/get-actor-by-id/{actorName}','ActorController@getActorIdByName');
 Route::get('/get-language','ApiController@getLanguage');
 Route::get('/search-film/{title}', 'FilmController@getFilmTitle');
 Route::get('/search-one-film/{title}', 'FilmController@getOneFilm');
@@ -28,6 +28,7 @@ Route::resource('/actor','ActorController');
 
 Route::get('/get-film-by-language/{language}','ApiController@getFilmByLanguage');
 Route::get('/get-film-by-year','ApiController@getFilmByYear');
-Route::get('/get-film-by-rental-rate','ApiController@getFilmByRentalRate');
+// Route::get('/get-film-by-rental-rate','ApiController@getFilmByRentalRate');
+Route::get('/get-film-rating/{rating}', 'ApiController@getFilmByRating');
 Route::get('/update-image','ApiController@updateImage');
 Route::get('/update-language', 'ApiController@updateLanguage');

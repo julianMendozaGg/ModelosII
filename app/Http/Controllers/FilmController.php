@@ -54,7 +54,7 @@ class FilmController extends Controller
      */
     public function show($order)
     {
-        return Film::orderby('title',$order)->paginate();        
+        return Film::where('title', 'like', '%'.$order.'%')->paginate(6);        
     }
     
 
