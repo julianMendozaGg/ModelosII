@@ -15,20 +15,20 @@ class ApiController extends Controller
     }
 
     //Peliculas por id del idioma que se recibe por la ruta
-    public function getFilmByLanguage($languageId){
-        $language= Language::find($languageId);
-        return $language->film()->paginate();
+    public function getFilmByLanguage($language){
+        $language= Language::where('name', $language)->first();
+        return $language->film()->paginate(6);
     }
 
     //Peliculas por año de lanzamiento
     public function getFilmByYear(){
-        $film = Film ::orderBy('release_year','DESC')->paginate();
+        $film = Film ::orderBy('release_year','DESC')->paginate(6);
         return $film;
     }
 
     //Peliculas por "calificacion".
     public function getFilmByRentalRate(){
-        $film = Film ::orderBy('rental_rate','DESC')->paginate();
+        $film = Film ::orderBy('rental_rate','DESC')->paginate(6);
         return $film;
     }
 
@@ -37,6 +37,20 @@ class ApiController extends Controller
         return Film::whereNull('image')->update(array('image' => $image));
         
     }
+
+    //Solo utilizar esta funcion para generar datos en la base de datos
+    // public function updateLanguage(){
+    //      Film::inRandomOrder()->limit(150)->update(array('language_id' => 6));
+    //      Film::inRandomOrder()->limit(150)->update(array('language_id' => 5));
+    //      Film::inRandomOrder()->limit(150)->update(array('language_id' => 4));
+    //      Film::inRandomOrder()->limit(200)->update(array('language_id' => 3));
+    //      Film::inRandomOrder()->limit(150)->update(array('language_id' => 2));
+    //      Film::inRandomOrder()->limit(100)->update(array('language_id' => 1));
+
+         
+    //      return 'ok';
+
+    // }
 
     
 
